@@ -12,7 +12,7 @@ package Janelas.Coleta_Ovos;
  * @author Douglas
  */
 public class Coleta_Ovos extends javax.swing.JInternalFrame {
-
+    
     /**
      * Creates new form Coleta_Ovos1
      */
@@ -20,6 +20,13 @@ public class Coleta_Ovos extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public Object[] lelinha(javax.swing.JTable tabela){
+        Object[] x= new Object[tabela.getColumnCount()];  
+        for (int i = 0; i < tabela.getColumnCount(); i++) {  
+            x[i] = tabela.getValueAt(tabela.getSelectedRow(), i);  
+        }
+        return x;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,19 +136,16 @@ public class Coleta_Ovos extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Object[] x= new Object[jTable1.getColumnCount()];  
-        for (int i = 0; i < jTable1.getColumnCount(); i++) {  
-            x[i] = jTable1.getValueAt(jTable1.getSelectedRow(), i);  
-        }
-        Cadastro_Coleta_Ovos a = new Cadastro_Coleta_Ovos(null, true);
-        a.setTemp(x);
-        a.setVisible(true);
+        Object[] x = lelinha(jTable1);
+        Cadastro_Coleta_Ovos cadastro = new Cadastro_Coleta_Ovos(null, true);
+        cadastro.setTemp(x);
+        cadastro.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Cadastro_Coleta_Ovos a = new Cadastro_Coleta_Ovos(null, true);
-        a.setVisible(true);
+        Cadastro_Coleta_Ovos cadastro = new Cadastro_Coleta_Ovos(null, true);
+        cadastro.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

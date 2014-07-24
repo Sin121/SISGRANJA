@@ -4,22 +4,35 @@
  * and open the template in the editor.
  */
 
-package Janelas.Login;
+package Janelas.Lote;
 
 /**
  *
  * @author Douglas
  */
-public class Mudar_Senha extends javax.swing.JDialog {
-
+public class Seleciona_Lote extends javax.swing.JDialog {
+    Object[] resposta;
     /**
-     * Creates new form Mudar_Senha1
+     * Creates new form Seleciona_Lote
      */
-    public Mudar_Senha(java.awt.Frame parent, boolean modal) {
+    public Seleciona_Lote(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        inicia();
         initComponents();
     }
 
+    public Object[] getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(Object[] resposta) {
+        this.resposta = resposta;
+    }
+
+    public void inicia(){
+        resposta = new Object[3];
+        resposta[0]= null;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,29 +42,21 @@ public class Mudar_Senha extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPasswordField3 = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
-        setTitle(bundle.getString("Mudar_Senha")); // NOI18N
-
-        jLabel4.setText(bundle.getString("Repita_Senha")); // NOI18N
-
-        jLabel3.setText(bundle.getString("Senha_Nova")); // NOI18N
-
-        jLabel2.setText(bundle.getString("Senha_Atual")); // NOI18N
+        setTitle(bundle.getString("Selecionar_Lote")); // NOI18N
+        setModal(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText(bundle.getString("Mudar_Senha")); // NOI18N
+        jLabel1.setText(bundle.getString("Selecionar_Lote")); // NOI18N
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
         jButton3.setText(bundle.getString("Fechar")); // NOI18N
@@ -61,11 +66,23 @@ public class Mudar_Senha extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
-        jButton2.setText(bundle.getString("Limpar")); // NOI18N
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
-        jButton1.setText(bundle.getString("Salvar")); // NOI18N
+        jButton1.setText(bundle.getString("Selecionar")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText(bundle.getString("Tipo")); // NOI18N
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lote de Corte", "Lote de Postura" }));
+        jComboBox1.setSelectedItem(null);
+
+        jLabel3.setText(bundle.getString("Identificador")); // NOI18N
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04" }));
+        jComboBox2.setSelectedItem(null);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,26 +91,21 @@ public class Mudar_Senha extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jPasswordField2)
-                            .addComponent(jPasswordField3))))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -104,20 +116,15 @@ public class Mudar_Senha extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -128,6 +135,26 @@ public class Mudar_Senha extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if((jComboBox1.getSelectedItem()!=null)&&(jComboBox2.getSelectedItem()!=null)){//se prencheu os 2 campos
+            resposta[1]=jComboBox1.getSelectedItem();
+            resposta[2]=jComboBox2.getSelectedItem();
+            resposta[0]=1;
+            this.dispose();
+        }else{//se nao preencheu os 2 campos
+            if ((jComboBox1.getSelectedItem()==null)&&(jComboBox2.getSelectedItem()==null)){//se nao preencheu nada
+                System.out.println("Nada selecionado");
+            }else{//se preencheu algo
+                if (jComboBox1.getSelectedItem()==null){//se tipo nao selecionado
+                    System.out.println("Tipo não selecionado");
+                }else{//se id nao selecionado
+                    System.out.println("Identificador não selecionado");
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,20 +173,20 @@ public class Mudar_Senha extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Mudar_Senha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Seleciona_Lote.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Mudar_Senha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Seleciona_Lote.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Mudar_Senha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Seleciona_Lote.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Mudar_Senha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Seleciona_Lote.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Mudar_Senha dialog = new Mudar_Senha(new javax.swing.JFrame(), true);
+                Seleciona_Lote dialog = new Seleciona_Lote(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -173,14 +200,11 @@ public class Mudar_Senha extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
     // End of variables declaration//GEN-END:variables
 }
