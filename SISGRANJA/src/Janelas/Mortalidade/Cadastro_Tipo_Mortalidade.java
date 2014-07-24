@@ -10,12 +10,13 @@ package Janelas.Mortalidade;
  *
  * @author Douglas
  */
-public class Cadastro_Tipo_Mortalidade extends javax.swing.JFrame {
+public class Cadastro_Tipo_Mortalidade extends javax.swing.JDialog {
 
     /**
-     * Creates new form Tipo_Mortalidade
+     * Creates new form Cadastro_Tipo_Mortalidade1
      */
-    public Cadastro_Tipo_Mortalidade() {
+    public Cadastro_Tipo_Mortalidade(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -28,30 +29,30 @@ public class Cadastro_Tipo_Mortalidade extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
         setTitle(bundle.getString("Cadastro_Tipo_Mortalidade")); // NOI18N
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
-        jButton1.setText(bundle.getString("Salvar")); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
-        jButton2.setText(bundle.getString("Limpar")); // NOI18N
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
-        jButton3.setText(bundle.getString("Fechar")); // NOI18N
+        jLabel2.setText(bundle.getString("Tipo_Mortalidade")); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText(bundle.getString("Cadastro_Tipo_Mortalidade")); // NOI18N
 
-        jLabel2.setText(bundle.getString("Tipo_Mortalidade")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
+        jButton3.setText(bundle.getString("Fechar")); // NOI18N
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
+        jButton2.setText(bundle.getString("Limpar")); // NOI18N
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
+        jButton1.setText(bundle.getString("Salvar")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,7 +86,7 @@ public class Cadastro_Tipo_Mortalidade extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
@@ -123,10 +124,17 @@ public class Cadastro_Tipo_Mortalidade extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cadastro_Tipo_Mortalidade().setVisible(true);
+                Cadastro_Tipo_Mortalidade dialog = new Cadastro_Tipo_Mortalidade(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

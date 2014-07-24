@@ -10,12 +10,13 @@ package Janelas.Mensagem;
  *
  * @author Douglas
  */
-public class Cadastro_Mensagem extends javax.swing.JFrame {
+public class Cadastro_Mensagem extends javax.swing.JDialog {
 
     /**
-     * Creates new form Mortalidade
+     * Creates new form Cadastro_Mensagem1
      */
-    public Cadastro_Mensagem() {
+    public Cadastro_Mensagem(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -28,35 +29,35 @@ public class Cadastro_Mensagem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
         setTitle(bundle.getString("Cadastro_Mensagem")); // NOI18N
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
-        jButton1.setText(bundle.getString("Salvar")); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
-        jButton2.setText(bundle.getString("Limpar")); // NOI18N
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
-        jButton3.setText(bundle.getString("Fechar")); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText(bundle.getString("Cadastro_Mensagem")); // NOI18N
-
-        jLabel2.setText(bundle.getString("Texto")); // NOI18N
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(2);
         jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel2.setText(bundle.getString("Texto")); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText(bundle.getString("Cadastro_Mensagem")); // NOI18N
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
+        jButton3.setText(bundle.getString("Fechar")); // NOI18N
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
+        jButton2.setText(bundle.getString("Limpar")); // NOI18N
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
+        jButton1.setText(bundle.getString("Salvar")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,7 +92,7 @@ public class Cadastro_Mensagem extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -130,10 +131,17 @@ public class Cadastro_Mensagem extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cadastro_Mensagem().setVisible(true);
+                Cadastro_Mensagem dialog = new Cadastro_Mensagem(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

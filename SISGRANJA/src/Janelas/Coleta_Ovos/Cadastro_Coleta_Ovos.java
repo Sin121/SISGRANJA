@@ -11,12 +11,26 @@ package Janelas.Coleta_Ovos;
  *
  * @author Douglas
  */
-public class Cadastro_Coleta_Ovos extends javax.swing.JFrame {
+public class Cadastro_Coleta_Ovos extends javax.swing.JDialog {
+    private Object[] info;
 
+    public Object[] getTemp() {
+        return info;
+    }
+
+    public void setTemp(Object[] temp) {
+        this.info = temp;
+        //jSpinner1.setValue(Integer.parseInt((String) info[0]));
+        //jSpinner2.setValue(Integer.parseInt((String) info[1]));
+        //jSpinner3.setValue(Integer.parseInt((String) info[2]));
+        //jTextArea1.setText((String) info[3]);
+    }
+    
     /**
-     * Creates new form Mortalidade
+     * Creates new form Cadastro_Coleta_Ovos1
      */
-    public Cadastro_Coleta_Ovos() {
+    public Cadastro_Coleta_Ovos(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -29,53 +43,65 @@ public class Cadastro_Coleta_Ovos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jSpinner3 = new javax.swing.JSpinner();
+        jSpinner2 = new javax.swing.JSpinner();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
         setTitle(bundle.getString("Cadastro_Coleta_Ovos")); // NOI18N
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
-        jButton1.setText(bundle.getString("Salvar")); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
-        jButton2.setText(bundle.getString("Limpar")); // NOI18N
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
-        jButton3.setText(bundle.getString("Fechar")); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText(bundle.getString("Cadastro_Coleta_Ovos")); // NOI18N
-
-        jLabel2.setText(bundle.getString("Hora")); // NOI18N
-
-        jLabel3.setText(bundle.getString("Ovos_inteiros")); // NOI18N
-
-        jLabel4.setText(bundle.getString("Ovos_quebrados")); // NOI18N
-
-        jLabel5.setText(bundle.getString("Observacao")); // NOI18N
-
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        setAlwaysOnTop(true);
+        setModal(true);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(2);
         jScrollPane1.setViewportView(jTextArea1);
+
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+
+        jLabel5.setText(bundle.getString("Observacao")); // NOI18N
+
+        jLabel4.setText(bundle.getString("Ovos_quebrados")); // NOI18N
+
+        jLabel3.setText(bundle.getString("Ovos_inteiros")); // NOI18N
+
+        jLabel2.setText(bundle.getString("Hora")); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText(bundle.getString("Cadastro_Coleta_Ovos")); // NOI18N
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
+        jButton3.setText(bundle.getString("Fechar")); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
+        jButton2.setText(bundle.getString("Limpar")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
+        jButton1.setText(bundle.getString("Salvar")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,7 +160,7 @@ public class Cadastro_Coleta_Ovos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -145,6 +171,19 @@ public class Cadastro_Coleta_Ovos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jSpinner1.setValue(0);
+        jSpinner2.setValue(0);
+        jSpinner3.setValue(0);
+        jTextArea1.setText(null);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,10 +212,17 @@ public class Cadastro_Coleta_Ovos extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cadastro_Coleta_Ovos().setVisible(true);
+                Cadastro_Coleta_Ovos dialog = new Cadastro_Coleta_Ovos(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
