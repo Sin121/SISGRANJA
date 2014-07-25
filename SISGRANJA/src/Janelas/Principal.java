@@ -51,6 +51,7 @@ import Janelas.Lote.Lote_Postura;
 import Janelas.Lote.Seleciona_Lote;
 import Janelas.Mensagem.Cadastro_Mensagem;
 import Janelas.Mensagem.Mensagem;
+import Janelas.Mortalidade.Cadastro_Tipo_Mortalidade;
 import Janelas.Mortalidade.Mortalidade;
 import Janelas.Mortalidade.Tipo_Mortalidade;
 import Janelas.Peso.Pesagem;
@@ -175,6 +176,9 @@ public class Principal extends javax.swing.JFrame {
         jMenu10 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jMenu31 = new javax.swing.JMenu();
+        jMenuItem45 = new javax.swing.JMenuItem();
+        jMenuItem46 = new javax.swing.JMenuItem();
         jMenu11 = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
@@ -371,6 +375,26 @@ public class Principal extends javax.swing.JFrame {
         jMenu10.add(jMenuItem17);
 
         jMenu2.add(jMenu10);
+
+        jMenu31.setText(bundle.getString("Tipo_Mortalidade")); // NOI18N
+
+        jMenuItem45.setText(bundle.getString("Cadastro_Tipo_Mortalidade")); // NOI18N
+        jMenuItem45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem45ActionPerformed(evt);
+            }
+        });
+        jMenu31.add(jMenuItem45);
+
+        jMenuItem46.setText(bundle.getString("Exibir_Tipo_Mortalidade")); // NOI18N
+        jMenuItem46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem46ActionPerformed(evt);
+            }
+        });
+        jMenu31.add(jMenuItem46);
+
+        jMenu2.add(jMenu31);
 
         jMenu11.setText(bundle.getString("Valor_Medio")); // NOI18N
 
@@ -978,6 +1002,17 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMenuItem44ActionPerformed
+
+    private void jMenuItem45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem45ActionPerformed
+        // TODO add your handling code here:
+        Cadastro_Tipo_Mortalidade cadastro = new Cadastro_Tipo_Mortalidade(null, true);
+        cadastro.setVisible(true);
+    }//GEN-LAST:event_jMenuItem45ActionPerformed
+
+    private void jMenuItem46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem46ActionPerformed
+        // TODO add your handling code here:
+        abre(tipo_mortalidade);
+    }//GEN-LAST:event_jMenuItem46ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1040,6 +1075,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu29;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu30;
+    private javax.swing.JMenu jMenu31;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
@@ -1086,6 +1122,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem42;
     private javax.swing.JMenuItem jMenuItem43;
     private javax.swing.JMenuItem jMenuItem44;
+    private javax.swing.JMenuItem jMenuItem45;
+    private javax.swing.JMenuItem jMenuItem46;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
