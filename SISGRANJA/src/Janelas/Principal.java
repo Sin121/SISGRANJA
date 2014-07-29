@@ -7,6 +7,7 @@
 package Janelas;
 
 import Janelas.Coleta_Ovos.Coleta_Ovos;
+import Janelas.Dia.Gerencia_Dia;
 import Janelas.Enciclopedia.Cadastro_Item_Enciclopedia;
 import Janelas.Enciclopedia.Item_Enciclopedia;
 import Janelas.Fase.Cadastro_Fase;
@@ -93,6 +94,7 @@ public class Principal extends javax.swing.JFrame {
     private Venda venda;
     private Gerencia_Lote_Corte gerencia_lote_corte;
     private Gerencia_Lote_Postura gerencia_lote_postura;
+    private Gerencia_Dia gerencia_dia;
     
     public void inicializa(){
         coleta_ovos = new Coleta_Ovos();
@@ -124,6 +126,7 @@ public class Principal extends javax.swing.JFrame {
         venda = new Venda();
         gerencia_lote_corte = new Gerencia_Lote_Corte();
         gerencia_lote_postura = new Gerencia_Lote_Postura();
+        gerencia_dia = new Gerencia_Dia();
     }
     public void abre(javax.swing.JInternalFrame frame){
         if (!frame.isVisible()){
@@ -135,6 +138,17 @@ public class Principal extends javax.swing.JFrame {
     }
     public void fecha(javax.swing.JInternalFrame frame){
         frame.dispose();
+    }
+    public Principal getPrincipal(){
+        return this;
+    }
+
+    public Gerencia_Dia getGerencia_dia() {
+        return gerencia_dia;
+    }
+
+    public void setGerencia_dia(Gerencia_Dia gerencia_dia) {
+        this.gerencia_dia = gerencia_dia;
     }
     
     /**
@@ -987,6 +1001,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem44ActionPerformed
         // TODO add your handling code here:
+        gerencia_lote_corte.setPrincipal(this);
+        gerencia_lote_postura.setPrincipal(this);
         Seleciona_Lote seleciona = new Seleciona_Lote(null, true);
         seleciona.setVisible(true);
         Object[] selecao = seleciona.getResposta();

@@ -6,7 +6,7 @@
 
 package Janelas.Lote;
 
-import Janelas.Dia.Gerencia_Dia;
+import Janelas.Principal;
 
 /**
  *
@@ -14,6 +14,7 @@ import Janelas.Dia.Gerencia_Dia;
  */
 public class Gerencia_Lote_Corte extends javax.swing.JInternalFrame {
     private Object[] entrada;
+    private Principal principal;
 
     /**
      * Creates new form GerenciaLoteCorte
@@ -32,6 +33,14 @@ public class Gerencia_Lote_Corte extends javax.swing.JInternalFrame {
     public void atualiza(){
         jTextField4.setText(entrada[1].toString());
         jTextField1.setText(entrada[2].toString());
+    }
+
+    public Principal getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
     }
 
     /**
@@ -448,8 +457,8 @@ public class Gerencia_Lote_Corte extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Gerencia_Dia cadastro = new Gerencia_Dia(null, true);
-        cadastro.setVisible(true);
+        principal.abre(principal.getGerencia_dia());
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -6,21 +6,28 @@
 
 package Janelas.Lote;
 
-import Janelas.Dia.Gerencia_Dia;
+import Janelas.Principal;
 
 /**
  *
  * @author Douglas
  */
 public class Gerencia_Lote_Postura extends javax.swing.JInternalFrame {
-
+    private Principal principal;
     /**
      * Creates new form Gerencia_Lote_Postura
      */
     public Gerencia_Lote_Postura() {
         initComponents();
     }
+    
+    public Principal getPrincipal() {
+        return principal;
+    }
 
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -492,8 +499,8 @@ public class Gerencia_Lote_Postura extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Gerencia_Dia cadastro = new Gerencia_Dia(null, true);
-        cadastro.setVisible(true);
+        principal.abre(principal.getGerencia_dia());
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

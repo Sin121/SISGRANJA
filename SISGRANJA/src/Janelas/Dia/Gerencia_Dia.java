@@ -8,40 +8,53 @@ package Janelas.Dia;
 
 import Janelas.Coleta_Ovos.Cadastro_Coleta_Ovos;
 import Janelas.Coleta_Ovos.Coleta_Ovos;
+import Janelas.Fase.Historico_Fase;
+import Janelas.Fase.Mudar_Fase;
+import Janelas.Galpao.Historico_Galpao;
+import Janelas.Galpao.Mudar_Galpao;
 import Janelas.Gasto.Cadastro_Gasto;
 import Janelas.Gasto.Gasto;
+import Janelas.Mensagem.Lista_Mensagens;
 import Janelas.Mortalidade.Cadastro_Mortalidade;
 import Janelas.Mortalidade.Mortalidade;
 import Janelas.Peso.Cadastro_Pesagem;
 import Janelas.Peso.Pesagem;
 import Janelas.Venda.Cadastro_Venda;
 import Janelas.Venda.Venda;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Douglas
  */
-public class Gerencia_Dia extends javax.swing.JDialog {
+public class Gerencia_Dia extends javax.swing.JInternalFrame {
     private Coleta_Ovos coleta_ovos;
     private Gasto gasto;
     private Mortalidade mortalidade;
     private Pesagem pesagem;
     private Venda venda;
-
+    private Historico_Fase historico_fase;
+    private Historico_Galpao historico_galpao;
+    private Lista_Mensagens lista_mensagens;
+    private String mensagem;
+    
     /**
-     * Creates new form Gerencia_Dia
+     * Creates new form temp
      */
-    public Gerencia_Dia(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Gerencia_Dia() {
         inicializa();
         initComponents();
     }
     public void inicializa(){
+        mensagem = "Nenhuma observação ainda.";
         coleta_ovos = new Coleta_Ovos();
         gasto = new Gasto();
         mortalidade = new Mortalidade();
         pesagem = new Pesagem();
         venda = new Venda();
+        historico_fase = new Historico_Fase();
+        historico_galpao = new Historico_Galpao();
+        lista_mensagens = new Lista_Mensagens();
     }
     public void abre(javax.swing.JInternalFrame frame){
         if (!frame.isVisible()){
@@ -53,6 +66,14 @@ public class Gerencia_Dia extends javax.swing.JDialog {
     }
     public void fecha(javax.swing.JInternalFrame frame){
         frame.dispose();
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
     /**
@@ -77,8 +98,8 @@ public class Gerencia_Dia extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jButton2 = new javax.swing.JButton();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -94,13 +115,14 @@ public class Gerencia_Dia extends javax.swing.JDialog {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
@@ -108,10 +130,11 @@ public class Gerencia_Dia extends javax.swing.JDialog {
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
         setTitle(bundle.getString("Gerenciamendo_dia")); // NOI18N
-        setModal(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText(bundle.getString("Gerenciamendo_dia")); // NOI18N
@@ -209,6 +232,9 @@ public class Gerencia_Dia extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
+        jButton2.setText(bundle.getString("Fechar_Dia")); // NOI18N
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
@@ -217,11 +243,8 @@ public class Gerencia_Dia extends javax.swing.JDialog {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 719, Short.MAX_VALUE)
+            .addGap(0, 694, Short.MAX_VALUE)
         );
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
-        jButton2.setText(bundle.getString("Fechar_Dia")); // NOI18N
 
         jMenu1.setText(bundle.getString("Coleta_Ovos")); // NOI18N
 
@@ -245,20 +268,40 @@ public class Gerencia_Dia extends javax.swing.JDialog {
 
         jMenu2.setText(bundle.getString("Fase")); // NOI18N
 
-        jMenuItem3.setText("jMenuItem1");
+        jMenuItem3.setText(bundle.getString("Avancar_Fase")); // NOI18N
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem4.setText("jMenuItem1");
+        jMenuItem4.setText(bundle.getString("Historico_Fases")); // NOI18N
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText(bundle.getString("Galpao")); // NOI18N
 
-        jMenuItem5.setText("jMenuItem1");
+        jMenuItem5.setText(bundle.getString("Alterar_Galpao")); // NOI18N
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
-        jMenuItem6.setText("jMenuItem1");
+        jMenuItem6.setText(bundle.getString("Historico_Galpao")); // NOI18N
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem6);
 
         jMenuBar1.add(jMenu3);
@@ -285,21 +328,25 @@ public class Gerencia_Dia extends javax.swing.JDialog {
 
         jMenu5.setText(bundle.getString("Horas_Luz")); // NOI18N
 
-        jMenuItem9.setText("jMenuItem1");
+        jMenuItem9.setText(bundle.getString("Exibir_Horas_Luz_Hoje")); // NOI18N
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem9);
-
-        jMenuItem10.setText("jMenuItem1");
-        jMenu5.add(jMenuItem10);
 
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText(bundle.getString("Mensagem")); // NOI18N
 
-        jMenuItem11.setText("jMenuItem1");
+        jMenuItem11.setText(bundle.getString("Listar_Mensagens_Lote_Hoje")); // NOI18N
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem11);
-
-        jMenuItem12.setText("jMenuItem1");
-        jMenu6.add(jMenuItem12);
 
         jMenuBar1.add(jMenu6);
 
@@ -322,6 +369,26 @@ public class Gerencia_Dia extends javax.swing.JDialog {
         jMenu7.add(jMenuItem14);
 
         jMenuBar1.add(jMenu7);
+
+        jMenu10.setText(bundle.getString("Observacao")); // NOI18N
+
+        jMenuItem19.setText(bundle.getString("Adicionar_Observacao")); // NOI18N
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem19);
+
+        jMenuItem20.setText(bundle.getString("Exibir_Observacao")); // NOI18N
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem20);
+
+        jMenuBar1.add(jMenu10);
 
         jMenu8.setText(bundle.getString("Pesagem")); // NOI18N
 
@@ -376,7 +443,7 @@ public class Gerencia_Dia extends javax.swing.JDialog {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -407,36 +474,16 @@ public class Gerencia_Dia extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        abre(coleta_ovos);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-        abre(gasto);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        // TODO add your handling code here:
-        abre(mortalidade);
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
-
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        // TODO add your handling code here:
-        abre(pesagem);
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
-
-    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        // TODO add your handling code here:
-        abre(venda);
-    }//GEN-LAST:event_jMenuItem18ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         Cadastro_Coleta_Ovos cadastro = new Cadastro_Coleta_Ovos(null, true);
         cadastro.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        abre(coleta_ovos);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
@@ -444,11 +491,21 @@ public class Gerencia_Dia extends javax.swing.JDialog {
         cadastro.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        abre(gasto);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
         Cadastro_Mortalidade cadastro = new Cadastro_Mortalidade(null, true);
         cadastro.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        abre(mortalidade);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
@@ -456,53 +513,67 @@ public class Gerencia_Dia extends javax.swing.JDialog {
         cadastro.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        abre(pesagem);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
         Cadastro_Venda cadastro = new Cadastro_Venda(null, true);
         cadastro.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gerencia_Dia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gerencia_Dia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gerencia_Dia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gerencia_Dia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+        abre(venda);
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Gerencia_Dia dialog = new Gerencia_Dia(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        Mudar_Fase cadastro = new Mudar_Fase(null, true);
+        cadastro.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        abre(historico_fase);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        Mudar_Galpao cadastro = new Mudar_Galpao(null, true);
+        cadastro.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        abre(historico_galpao);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, this.getMensagem(), java.util.ResourceBundle.getBundle("Janelas/Strings").getString("Observacao"), JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+        CadastraObservacao cadastro = new CadastraObservacao(null, true);
+        cadastro.setGerencia_dia(this);
+        cadastro.setObservacao(mensagem);
+        cadastro.setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+        abre(lista_mensagens);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Hoje teremos 12:00 horas de luz.", java.util.ResourceBundle.getBundle("Janelas/Strings").getString("Horas_Luz_Hoje"), JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
@@ -516,6 +587,7 @@ public class Gerencia_Dia extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -526,16 +598,16 @@ public class Gerencia_Dia extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
