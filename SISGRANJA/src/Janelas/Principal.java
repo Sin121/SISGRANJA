@@ -6,7 +6,7 @@
 
 package Janelas;
 
-import Janelas.Coleta_Ovos.Coleta_Ovos;
+import Janelas.Backup.Backup;
 import Janelas.Dia.Gerencia_Dia;
 import Janelas.Enciclopedia.Cadastro_Item_Enciclopedia;
 import Janelas.Enciclopedia.Item_Enciclopedia;
@@ -26,7 +26,6 @@ import Janelas.Gasto.Gas.Cadastro_Lote_Gas;
 import Janelas.Gasto.Gas.Cadastro_Tipo_Gas;
 import Janelas.Gasto.Gas.Lote_Gas;
 import Janelas.Gasto.Gas.Tipo_Gas;
-import Janelas.Gasto.Gasto;
 import Janelas.Gasto.Medicamento.Cadastro_Lote_Medicamento;
 import Janelas.Gasto.Medicamento.Cadastro_Tipo_Medicamento;
 import Janelas.Gasto.Medicamento.Lote_Medicamento;
@@ -53,23 +52,19 @@ import Janelas.Lote.Seleciona_Lote;
 import Janelas.Mensagem.Cadastro_Mensagem;
 import Janelas.Mensagem.Mensagem;
 import Janelas.Mortalidade.Cadastro_Tipo_Mortalidade;
-import Janelas.Mortalidade.Mortalidade;
 import Janelas.Mortalidade.Tipo_Mortalidade;
-import Janelas.Peso.Pesagem;
+import Janelas.Relatorios.Relatorios;
 import Janelas.Valor_Medio.Cadastro_Valor_Medio;
 import Janelas.Valor_Medio.Valor_Medio;
-import Janelas.Venda.Venda;
 
 /**
  *
  * @author Douglas
  */
 public class Principal extends javax.swing.JFrame {
-    private Coleta_Ovos coleta_ovos;
     private Item_Enciclopedia item_enciclopedia;
     private Fase fase;
     private Galpao galpao;
-    private Gasto gasto;
     private Lote_Cama lote_cama;
     private Tipo_Cama tipo_cama;
     private Lote_Equipamento_Eletrico lote_equipamento_eletrico;
@@ -87,21 +82,17 @@ public class Principal extends javax.swing.JFrame {
     private Lote_Corte lote_corte;
     private Lote_Postura lote_postura;
     private Mensagem mensagem;
-    private Mortalidade mortalidade;
     private Tipo_Mortalidade tipo_mortalidade;
-    private Pesagem pesagem;
     private Valor_Medio valor_medio;
-    private Venda venda;
     private Gerencia_Lote_Corte gerencia_lote_corte;
     private Gerencia_Lote_Postura gerencia_lote_postura;
     private Gerencia_Dia gerencia_dia;
+    private Relatorios relatorios;
     
     public void inicializa(){
-        coleta_ovos = new Coleta_Ovos();
         item_enciclopedia = new Item_Enciclopedia();
         fase = new Fase();
         galpao = new Galpao();
-        gasto = new Gasto();
         lote_cama = new Lote_Cama();
         tipo_cama = new Tipo_Cama();
         lote_equipamento_eletrico = new Lote_Equipamento_Eletrico();
@@ -119,14 +110,12 @@ public class Principal extends javax.swing.JFrame {
         lote_corte = new Lote_Corte();
         lote_postura = new Lote_Postura();
         mensagem = new Mensagem();
-        mortalidade = new Mortalidade();
         tipo_mortalidade = new Tipo_Mortalidade();
-        pesagem = new Pesagem();
         valor_medio = new Valor_Medio();
-        venda = new Venda();
         gerencia_lote_corte = new Gerencia_Lote_Corte();
         gerencia_lote_postura = new Gerencia_Lote_Postura();
         gerencia_dia = new Gerencia_Dia();
+        relatorios = new Relatorios();
     }
     public void abre(javax.swing.JInternalFrame frame){
         if (!frame.isVisible()){
@@ -247,6 +236,10 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem44 = new javax.swing.JMenuItem();
+        jMenu32 = new javax.swing.JMenu();
+        jMenuItem47 = new javax.swing.JMenuItem();
+        jMenu33 = new javax.swing.JMenu();
+        jMenuItem48 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
@@ -752,6 +745,30 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu7);
 
+        jMenu32.setText(bundle.getString("Relatorios")); // NOI18N
+
+        jMenuItem47.setText(bundle.getString("Gerar_Relatorio")); // NOI18N
+        jMenuItem47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem47ActionPerformed(evt);
+            }
+        });
+        jMenu32.add(jMenuItem47);
+
+        jMenuBar1.add(jMenu32);
+
+        jMenu33.setText(bundle.getString("Backup")); // NOI18N
+
+        jMenuItem48.setText(bundle.getString("Backup")); // NOI18N
+        jMenuItem48.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem48ActionPerformed(evt);
+            }
+        });
+        jMenu33.add(jMenuItem48);
+
+        jMenuBar1.add(jMenu33);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -862,7 +879,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem39ActionPerformed
         // TODO add your handling code here:
-        abre(lote_racao);
+        abre(tipo_racao);
     }//GEN-LAST:event_jMenuItem39ActionPerformed
 
     private void jMenuItem41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem41ActionPerformed
@@ -1029,6 +1046,17 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         abre(tipo_mortalidade);
     }//GEN-LAST:event_jMenuItem46ActionPerformed
+
+    private void jMenuItem47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem47ActionPerformed
+        // TODO add your handling code here:
+        abre(relatorios);
+    }//GEN-LAST:event_jMenuItem47ActionPerformed
+
+    private void jMenuItem48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem48ActionPerformed
+        // TODO add your handling code here:
+        Backup cadastro = new Backup(null, true);
+        cadastro.setVisible(true);
+    }//GEN-LAST:event_jMenuItem48ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1092,6 +1120,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu30;
     private javax.swing.JMenu jMenu31;
+    private javax.swing.JMenu jMenu32;
+    private javax.swing.JMenu jMenu33;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
@@ -1140,6 +1170,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem44;
     private javax.swing.JMenuItem jMenuItem45;
     private javax.swing.JMenuItem jMenuItem46;
+    private javax.swing.JMenuItem jMenuItem47;
+    private javax.swing.JMenuItem jMenuItem48;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

@@ -134,10 +134,10 @@ public class Gerencia_Dia extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
-        setTitle(bundle.getString("Gerenciamendo_dia")); // NOI18N
+        setTitle(bundle.getString("Gerenciamento_dia")); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText(bundle.getString("Gerenciamendo_dia")); // NOI18N
+        jLabel1.setText(bundle.getString("Gerenciamento_dia")); // NOI18N
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("Lote"))); // NOI18N
         jPanel2.setToolTipText(bundle.getString("Identificacao")); // NOI18N
