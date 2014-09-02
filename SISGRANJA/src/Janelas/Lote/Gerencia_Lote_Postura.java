@@ -85,6 +85,7 @@ public class Gerencia_Lote_Postura extends javax.swing.JInternalFrame {
         setResizable(true);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
         setTitle(bundle.getString("Cadastro_Lote_Postura")); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1129, 750));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
         jButton4.setText(bundle.getString("Fechar")); // NOI18N
@@ -129,7 +130,7 @@ public class Gerencia_Lote_Postura extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                     .addComponent(jTextField8))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -331,7 +332,7 @@ public class Gerencia_Lote_Postura extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)

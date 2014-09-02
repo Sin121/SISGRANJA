@@ -11,7 +11,7 @@ import Janelas.Dia.Gerencia_Dia;
 import Janelas.Enciclopedia.Cadastro_Item_Enciclopedia;
 import Janelas.Enciclopedia.Item_Enciclopedia;
 import Janelas.Fase.Cadastro_Fase;
-import Janelas.Fase.Fase;
+import Janelas.Fase.Lista_Fase;
 import Janelas.Galpao.Cadastro_Galpao;
 import Janelas.Galpao.Galpao;
 import Janelas.Gasto.Cama.Cadastro_Lote_Cama;
@@ -63,7 +63,7 @@ import Janelas.Valor_Medio.Valor_Medio;
  */
 public class Principal extends javax.swing.JFrame {
     private Item_Enciclopedia item_enciclopedia;
-    private Fase fase;
+    private Lista_Fase fase;
     private Galpao galpao;
     private Lote_Cama lote_cama;
     private Tipo_Cama tipo_cama;
@@ -91,7 +91,7 @@ public class Principal extends javax.swing.JFrame {
     
     public void inicializa(){
         item_enciclopedia = new Item_Enciclopedia();
-        fase = new Fase();
+        fase = new Lista_Fase();
         galpao = new Galpao();
         lote_cama = new Lote_Cama();
         tipo_cama = new Tipo_Cama();
@@ -244,16 +244,17 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
         setTitle(bundle.getString("SISGRANJA")); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1500, 900));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 1500, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 581, Short.MAX_VALUE)
+            .addGap(0, 783, Short.MAX_VALUE)
         );
 
         jMenu1.setText(bundle.getString("Enciclopedia")); // NOI18N

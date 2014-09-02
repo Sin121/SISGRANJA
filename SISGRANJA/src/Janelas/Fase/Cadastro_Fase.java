@@ -6,11 +6,15 @@
 
 package Janelas.Fase;
 
+import Hibernate.Fase;
+
 /**
  *
  * @author Douglas
  */
 public class Cadastro_Fase extends javax.swing.JDialog {
+    private Fase fase = new Fase();
+    private boolean exist = false;
 
     /**
      * Creates new form Cadastro_Fase1
@@ -18,7 +22,52 @@ public class Cadastro_Fase extends javax.swing.JDialog {
     public Cadastro_Fase(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        inicializa();
     }
+    public void limpar(){
+        jComboBox1.setSelectedIndex(0);
+        jTextField1.setText(null);
+        jTextField2.setText(null);
+        jTextField3.setText(null);
+        jSpinner1.setValue(1);
+        jSpinner2.setValue(2);
+    }
+    public void inicializa(){
+        atualizaDuracao();
+    }
+    public void getFase(){
+        jComboBox1.setSelectedIndex(fase.getTipo());
+        jTextField1.setText(fase.getNome());
+        jTextField2.setText(fase.getDescricao());
+        jSpinner1.setValue(fase.getInicio());
+        jSpinner2.setValue(fase.getDuracao() + fase.getInicio() - 1);//duração + inicio - 1 = fim
+        jTextField3.setText(Integer.toString(fase.getDuracao()));
+    }
+    public void setFase(){
+        //fase.setCodigo(null);
+        fase.setTipo(jComboBox1.getSelectedIndex());
+        fase.setNome(jTextField1.getText());
+        fase.setDescricao(jTextField2.getText());
+        fase.setInicio((int) jSpinner1.getValue());
+        fase.setDuracao(Integer.parseInt(jTextField3.getText()));
+    }
+    public void setFase(Fase atual){
+        fase = atual;
+        
+        getFase();
+    }
+    public void atualizaDuracao(){
+        jTextField3.setText(Integer.toString((int) jSpinner2.getValue() - (int) jSpinner1.getValue() + 1));//fim - inicio + 1 = duracao
+    }
+
+    public boolean getExist() {
+        return exist;
+    }
+
+    public void setExist(boolean exist) {
+        this.exist = exist;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,9 +119,19 @@ public class Cadastro_Fase extends javax.swing.JDialog {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
         jButton2.setText(bundle.getString("Limpar")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
         jButton1.setText(bundle.getString("Salvar")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextField3.setEditable(false);
 
@@ -86,9 +145,19 @@ public class Cadastro_Fase extends javax.swing.JDialog {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Corte", "Postura" }));
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(2), Integer.valueOf(2), null, Integer.valueOf(1)));
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(2), Integer.valueOf(1), null, Integer.valueOf(1)));
+        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner2StateChanged(evt);
+            }
+        });
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,6 +245,39 @@ public class Cadastro_Fase extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        limpar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        atualizaDuracao();
+        setFase();
+        System.out.println(fase);
+        if (exist){
+            fase.editar();
+        }else{
+            fase.cadastrar();
+        }        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
+        // TODO add your handling code here:
+        if ((int)jSpinner1.getValue() > (int)jSpinner2.getValue()){
+            jSpinner1.setValue((int)jSpinner2.getValue());
+        }
+        atualizaDuracao();
+    }//GEN-LAST:event_jSpinner2StateChanged
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        // TODO add your handling code here:
+        if ((int)jSpinner1.getValue() > (int)jSpinner2.getValue()){
+            jSpinner2.setValue((int)jSpinner1.getValue());
+        }
+        atualizaDuracao();
+    }//GEN-LAST:event_jSpinner1StateChanged
 
     /**
      * @param args the command line arguments
