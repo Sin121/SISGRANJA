@@ -6,7 +6,39 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sisgranja?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
+    <mapping resource="Hibernate/Loteeqeletrico.hbm.xml"/>
+    <mapping resource="Hibernate/Loteracao.hbm.xml"/>
+    <mapping resource="Hibernate/Venda.hbm.xml"/>
+    <mapping resource="Hibernate/Salario.hbm.xml"/>
+    <mapping resource="Hibernate/Tipocama.hbm.xml"/>
+    <mapping resource="Hibernate/Tipomortalidade.hbm.xml"/>
+    <mapping resource="Hibernate/Mensagem.hbm.xml"/>
+    <mapping resource="Hibernate/Dia.hbm.xml"/>
+    <mapping resource="Hibernate/Horasluz.hbm.xml"/>
+    <mapping resource="Hibernate/Tipopeso.hbm.xml"/>
+    <mapping resource="Hibernate/Lote.hbm.xml"/>
     <mapping resource="Hibernate/Galpao.hbm.xml"/>
+    <mapping resource="Hibernate/Outrasdespesas.hbm.xml"/>
+    <mapping resource="Hibernate/Enciclopedia.hbm.xml"/>
+    <mapping resource="Hibernate/Tipoeqeletrico.hbm.xml"/>
+    <mapping resource="Hibernate/Tipogas.hbm.xml"/>
+    <mapping resource="Hibernate/Mensagemdia.hbm.xml"/>
+    <mapping resource="Hibernate/Abate.hbm.xml"/>
+    <mapping resource="Hibernate/Coletaovos.hbm.xml"/>
+    <mapping resource="Hibernate/Lotegas.hbm.xml"/>
+    <mapping resource="Hibernate/Lotemedicamento.hbm.xml"/>
+    <mapping resource="Hibernate/Tipovacina.hbm.xml"/>
+    <mapping resource="Hibernate/Lotevacina.hbm.xml"/>
+    <mapping resource="Hibernate/Gastos.hbm.xml"/>
+    <mapping resource="Hibernate/Agua.hbm.xml"/>
+    <mapping resource="Hibernate/Tipomedicamento.hbm.xml"/>
+    <mapping resource="Hibernate/Login.hbm.xml"/>
+    <mapping resource="Hibernate/Pesagem.hbm.xml"/>
+    <mapping resource="Hibernate/Mortalidade.hbm.xml"/>
     <mapping resource="Hibernate/Fase.hbm.xml"/>
+    <mapping resource="Hibernate/Tiporacao.hbm.xml"/>
+    <mapping resource="Hibernate/Valormedio.hbm.xml"/>
+    <mapping resource="Hibernate/Linhagem.hbm.xml"/>
+    <mapping resource="Hibernate/Lotecama.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

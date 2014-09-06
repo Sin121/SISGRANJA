@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/09/2014 17:29:34 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Hibernate.Venda" table="venda" catalog="sisgranja">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="quantidade" type="int">
+            <column name="quantidade" not-null="true" />
+        </property>
+        <property name="valorUnitario" type="float">
+            <column name="valorUnitario" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="valorTotal" type="float">
+            <column name="valorTotal" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="destino" type="string">
+            <column name="destino" length="50" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="50" not-null="true" />
+        </property>
+        <property name="codigoDia" type="int">
+            <column name="codigoDia" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

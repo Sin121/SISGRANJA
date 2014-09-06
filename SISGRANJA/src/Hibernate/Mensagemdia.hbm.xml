@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/09/2014 17:29:34 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Hibernate.Mensagemdia" table="mensagemdia" catalog="sisgranja">
+        <composite-id name="id" class="Hibernate.MensagemdiaId">
+            <key-property name="codigoDia" type="int">
+                <column name="codigoDia" />
+            </key-property>
+            <key-property name="codigoMensagem" type="int">
+                <column name="codigoMensagem" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

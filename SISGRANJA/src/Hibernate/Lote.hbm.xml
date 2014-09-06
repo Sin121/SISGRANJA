@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/09/2014 17:29:34 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Hibernate.Lote" table="lote" catalog="sisgranja">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="dataChegada" type="timestamp">
+            <column name="dataChegada" length="19" not-null="true" />
+        </property>
+        <property name="quantInicial" type="int">
+            <column name="quantInicial" not-null="true" />
+        </property>
+        <property name="status" type="boolean">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="custoAve" type="float">
+            <column name="custoAve" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="pesoInicial" type="float">
+            <column name="pesoInicial" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="origem" type="string">
+            <column name="origem" length="50" not-null="true" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" length="300" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

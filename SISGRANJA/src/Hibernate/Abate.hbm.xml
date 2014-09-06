@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/09/2014 17:29:34 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Hibernate.Abate" table="abate" catalog="sisgranja">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="preco" type="float">
+            <column name="preco" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="quantidade" type="int">
+            <column name="quantidade" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

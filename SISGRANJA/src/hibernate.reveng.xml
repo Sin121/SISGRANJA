@@ -2,6 +2,38 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="sisgranja"/>
-  <table-filter match-name="galpao"/>
+  <table-filter match-name="dia"/>
+  <table-filter match-name="valormedio"/>
+  <table-filter match-name="tipoeqeletrico"/>
+  <table-filter match-name="tiporacao"/>
+  <table-filter match-name="tipopeso"/>
+  <table-filter match-name="lotemedicamento"/>
+  <table-filter match-name="lotecama"/>
+  <table-filter match-name="tipovacina"/>
+  <table-filter match-name="outrasdespesas"/>
+  <table-filter match-name="venda"/>
+  <table-filter match-name="loteeqeletrico"/>
+  <table-filter match-name="lote"/>
+  <table-filter match-name="tipogas"/>
+  <table-filter match-name="salario"/>
+  <table-filter match-name="lotevacina"/>
+  <table-filter match-name="mensagemdia"/>
   <table-filter match-name="fase"/>
+  <table-filter match-name="abate"/>
+  <table-filter match-name="lotegas"/>
+  <table-filter match-name="mensagem"/>
+  <table-filter match-name="gastos"/>
+  <table-filter match-name="tipomedicamento"/>
+  <table-filter match-name="pesagem"/>
+  <table-filter match-name="agua"/>
+  <table-filter match-name="galpao"/>
+  <table-filter match-name="enciclopedia"/>
+  <table-filter match-name="login"/>
+  <table-filter match-name="coletaovos"/>
+  <table-filter match-name="tipomortalidade"/>
+  <table-filter match-name="mortalidade"/>
+  <table-filter match-name="horasluz"/>
+  <table-filter match-name="linhagem"/>
+  <table-filter match-name="tipocama"/>
+  <table-filter match-name="loteracao"/>
 </hibernate-reverse-engineering>

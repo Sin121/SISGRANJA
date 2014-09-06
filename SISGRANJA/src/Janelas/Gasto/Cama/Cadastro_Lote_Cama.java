@@ -5,12 +5,25 @@
  */
 
 package Janelas.Gasto.Cama;
+import Hibernate.Lotecama;
+
 
 /**
  *
  * @author Douglas
  */
 public class Cadastro_Lote_Cama extends javax.swing.JDialog {
+      private boolean existe=false;
+
+    public boolean isExiste() {
+        return existe;
+    }
+
+    public void setExiste(boolean existe) {
+        this.existe = existe;
+    }
+    
+    private Lotecama cama =  new Lotecama();
 
     /**
      * Creates new form Cadastro_Lote_Cama1
@@ -18,6 +31,9 @@ public class Cadastro_Lote_Cama extends javax.swing.JDialog {
     public Cadastro_Lote_Cama(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    public void setCama(){
+        
     }
 
     /**

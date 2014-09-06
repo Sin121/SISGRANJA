@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/09/2014 17:29:34 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Hibernate.Dia" table="dia" catalog="sisgranja">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="data" type="date">
+            <column name="data" length="10" not-null="true" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" length="200" not-null="true" />
+        </property>
+        <property name="status" type="boolean">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="codLote" type="int">
+            <column name="codLote" not-null="true" />
+        </property>
+        <property name="codGalpao" type="int">
+            <column name="codGalpao" not-null="true" />
+        </property>
+        <property name="codHorasLuz" type="int">
+            <column name="codHorasLuz" not-null="true" />
+        </property>
+        <property name="codFase" type="int">
+            <column name="codFase" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

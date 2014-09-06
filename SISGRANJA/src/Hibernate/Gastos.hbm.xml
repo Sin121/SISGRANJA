@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/09/2014 17:29:34 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Hibernate.Gastos" table="gastos" catalog="sisgranja">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" />
+            <generator class="identity" />
+        </id>
+        <property name="quantidade" type="float">
+            <column name="quantidade" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="codigoDia" type="int">
+            <column name="codigoDia" not-null="true" />
+        </property>
+        <property name="codLote" type="int">
+            <column name="codLote" not-null="true" />
+        </property>
+        <property name="tipo" type="int">
+            <column name="tipo" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
