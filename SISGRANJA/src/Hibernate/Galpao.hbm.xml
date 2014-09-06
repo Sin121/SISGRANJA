@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 04/09/2014 14:04:24 by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="Hibernate.Fase" table="fase" catalog="sisgranja">
+    <class name="Hibernate.Galpao" table="galpao" catalog="sisgranja">
         <id name="codigo" type="java.lang.Integer">
             <column name="codigo" />
             <generator class="identity" />
@@ -11,14 +11,17 @@
         <property name="nome" type="string">
             <column name="nome" length="50" not-null="true" />
         </property>
-        <property name="descricao" type="string">
-            <column name="descricao" length="200" not-null="true" />
+        <property name="tipo" type="java.lang.Integer">
+            <column name="tipo" length="10" not-null="true" />
         </property>
-        <property name="tipo" type="int">
-            <column name="tipo" not-null="true" />
+        <property name="altura" type="double">
+            <column name="altura" precision="22" scale="0" not-null="true" />
         </property>
-        <property name="duracao" type="int">
-            <column name="duracao" not-null="true" />
+        <property name="largura" type="double">
+            <column name="largura" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="comprimento" type="double">
+            <column name="comprimento" precision="22" scale="0" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 
-package Janelas.Galpao;
+package Janelas.Fase;
 
 /**
  *
  * @author Douglas
  */
-public class Galpao extends javax.swing.JInternalFrame {
+public class Fase extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Galpao1
+     * Creates new form Fase1
      */
-    public Galpao() {
+    public Fase() {
         initComponents();
     }
 
@@ -40,7 +40,7 @@ public class Galpao extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
-        setTitle(bundle.getString("Galpao")); // NOI18N
+        setTitle(bundle.getString("Fase")); // NOI18N
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
         jButton4.setText(bundle.getString("Fechar")); // NOI18N
@@ -83,7 +83,7 @@ public class Galpao extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText(bundle.getString("Galpao")); // NOI18N
+        jLabel1.setText(bundle.getString("Fase")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,7 +113,7 @@ public class Galpao extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -132,7 +132,7 @@ public class Galpao extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Cadastro_Galpao cadastro = new Cadastro_Galpao(null, true);
+        Cadastro_Fase cadastro = new Cadastro_Fase(null, true);
         cadastro.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -6,6 +6,7 @@
 
 package Janelas;
 
+import Hibernate.Galpao;
 import Janelas.Backup.Backup;
 import Janelas.Dia.Gerencia_Dia;
 import Janelas.Enciclopedia.Cadastro_Item_Enciclopedia;
@@ -13,7 +14,7 @@ import Janelas.Enciclopedia.Item_Enciclopedia;
 import Janelas.Fase.Cadastro_Fase;
 import Janelas.Fase.Lista_Fase;
 import Janelas.Galpao.Cadastro_Galpao;
-import Janelas.Galpao.Galpao;
+import Janelas.Galpao.Visualizar_Galpao;
 import Janelas.Gasto.Cama.Cadastro_Lote_Cama;
 import Janelas.Gasto.Cama.Cadastro_Tipo_Cama;
 import Janelas.Gasto.Cama.Lote_Cama;
@@ -64,7 +65,7 @@ import Janelas.Valor_Medio.Valor_Medio;
 public class Principal extends javax.swing.JFrame {
     private Item_Enciclopedia item_enciclopedia;
     private Lista_Fase fase;
-    private Galpao galpao;
+    private Visualizar_Galpao galpao;
     private Lote_Cama lote_cama;
     private Tipo_Cama tipo_cama;
     private Lote_Equipamento_Eletrico lote_equipamento_eletrico;
@@ -92,7 +93,7 @@ public class Principal extends javax.swing.JFrame {
     public void inicializa(){
         item_enciclopedia = new Item_Enciclopedia();
         fase = new Lista_Fase();
-        galpao = new Galpao();
+        galpao = new Visualizar_Galpao();
         lote_cama = new Lote_Cama();
         tipo_cama = new Tipo_Cama();
         lote_equipamento_eletrico = new Lote_Equipamento_Eletrico();

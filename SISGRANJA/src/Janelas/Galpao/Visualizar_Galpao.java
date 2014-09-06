@@ -4,40 +4,39 @@
  * and open the template in the editor.
  */
 
-package Janelas.Fase;
+package Janelas.Galpao;
 
-import Hibernate.Alerta;
-import Hibernate.Fase;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Hibernate.Galpao;
 
 /**
  *
  * @author Douglas
  */
-public class Lista_Fase extends javax.swing.JInternalFrame {
-    private Fase fase = new Fase();
+public class Visualizar_Galpao extends javax.swing.JInternalFrame {
+ Galpao galp = new Galpao();
     /**
-     * Creates new form Fase1
+     * Creates new form Galpao1
      */
-    public Lista_Fase() {
+    public Visualizar_Galpao() {
         initComponents();
-        inicializa();
-    }
-    public void inicializa(){
-        atualizatabela();
+        galp.tabela(jTable1);//CHAMA A FUNÇÃO QUE PREENCHE A TABELA COM OS DADOS
     }
     public void atualizatabela(){
-        DefaultTableModel model = fase.modelotabela(jTable1);
-        jTable1.setModel(model);
+        galp.tabela(jTable1);//CHAMA A FUNÇÃO QUE PREENCHE A TABELA COM OS DADOS
+     
         //jTable1.setRowSelectionInterval(0, 0);//selecionar a primeira linha automaticamente se nao tiver nada selecionado
     }
-    public void setfase(){
-        fase.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-        fase.setTipo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 1));
-        fase.setNome((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2));
-        fase.setDescricao((String) jTable1.getValueAt(jTable1.getSelectedRow(), 3));
-        fase.setInicio((int) jTable1.getValueAt(jTable1.getSelectedRow(), 4));
-        fase.setDuracao((int) jTable1.getValueAt(jTable1.getSelectedRow(), 6));
+    public void setGalpao(){
+        galp.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        galp.setNome((String) jTable1.getValueAt(jTable1.getSelectedRow(), 1));
+        galp.setTipo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 2));
+        galp.setAltura((Double) jTable1.getValueAt(jTable1.getSelectedRow(), 3));
+        galp.setLargura((Double) jTable1.getValueAt(jTable1.getSelectedRow(), 4));
+        galp.setComprimento((Double) jTable1.getValueAt(jTable1.getSelectedRow(), 5));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,7 +59,12 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
-        setTitle(bundle.getString("Fase")); // NOI18N
+        setTitle(bundle.getString("Galpao")); // NOI18N
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
         jButton4.setText(bundle.getString("Fechar")); // NOI18N
@@ -75,10 +79,25 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-
+                "CÓDIGO", "NOME", "TIPO", "ALTURA", "LARGURA", "COMPRIMENTO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(80);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(40);
+        }
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Delete2.png"))); // NOI18N
         jButton3.setText(bundle.getString("Excluir")); // NOI18N
@@ -105,29 +124,30 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText(bundle.getString("Fase")); // NOI18N
+        jLabel1.setText(bundle.getString("Galpao")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(65, 65, 65)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3)
+                                .addGap(65, 65, 65)
+                                .addComponent(jButton4)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,8 +155,8 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3)
@@ -149,25 +169,19 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        if (jTable1.getSelectedRow() == -1){
-            Alerta msg = new Alerta("editar","Editar Item","editar");
-            msg.nadaselecionado();
-        }else{
-            setfase();
-            Cadastro_Fase cadastro = new Cadastro_Fase(null, true);
-            cadastro.setFase(fase);
-            cadastro.setExist(true);
-            cadastro.setVisible(true);
-            atualizatabela();
-        }
+        //Botão de salvar edição
+        setGalpao();
+        Cadastro_Galpao galpao = new Cadastro_Galpao(null, true);
+        galpao.setGalpao(galp);
+        galpao.setExiste(true);
+        galpao.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Cadastro_Fase cadastro = new Cadastro_Fase(null, true);
+        Cadastro_Galpao cadastro = new Cadastro_Galpao(null, true);
         cadastro.setVisible(true);
-        atualizatabela();
+        atualizatabela();//CHAMA A FUNÇÃO QUE PREENCHE A TABELA COM OS DADOS
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -175,15 +189,18 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // clique com o mouse
+    }//GEN-LAST:event_formMouseClicked
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        if (jTable1.getSelectedRow() == -1){
-            Alerta msg = new Alerta("exluir","Excluir Item","exluir");
-            msg.nadaselecionado();
-        }else{
-            setfase();
-            fase.excluir();
-            atualizatabela();
+        // Botão de Exclusão
+         int item = (Integer) jTable1.getModel().getValueAt(jTable1.getSelectedRow(),0);
+        int res=JOptionPane.showConfirmDialog(null,"Confirma a exclusão do Galpão?","Exclusão",JOptionPane.OK_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(res==JOptionPane.OK_OPTION){
+            galp.excluir(item);
+            atualizatabela();//CHAMA A FUNÇÃO QUE PREENCHE A TABELA COM OS DADOS
+          
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
