@@ -1,6 +1,3 @@
-
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,6 +24,15 @@ public class Cadastro_Fase extends javax.swing.JDialog {
         initComponents();
         inicializa();
     }
+    public void salvar(){
+        setFase();
+        System.out.println(fase);
+        if (exist){
+            fase.editar();
+        }else{
+            fase.cadastrar();
+        }
+    }
     public void limpar(){
         jComboBox1.setSelectedIndex(0);
         jTextField1.setText(null);
@@ -34,6 +40,7 @@ public class Cadastro_Fase extends javax.swing.JDialog {
         jTextField3.setText(null);
         jSpinner1.setValue(1);
         jSpinner2.setValue(2);
+        fase.setCodigo(null);
     }
     public void inicializa(){
         atualizaDuracao();
@@ -156,7 +163,6 @@ public class Cadastro_Fase extends javax.swing.JDialog {
         });
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
-        jSpinner1.setRequestFocusEnabled(false);
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinner1StateChanged(evt);
@@ -257,14 +263,7 @@ public class Cadastro_Fase extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        atualizaDuracao();
-        setFase();
-        System.out.println(fase);
-        if (exist){
-            fase.editar();
-        }else{
-            fase.cadastrar();
-        }        
+        salvar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged

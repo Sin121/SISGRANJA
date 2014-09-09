@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06/09/2014 17:29:34 by Hibernate Tools 3.6.0 -->
+<!-- Generated 05/09/2014 15:29:24 by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Hibernate.Tipoeqeletrico" table="tipoeqeletrico" catalog="sisgranja">
         <id name="codigo" type="java.lang.Integer">
@@ -14,8 +14,14 @@
         <property name="nome" type="string">
             <column name="nome" length="50" not-null="true" />
         </property>
-        <property name="potencia" type="string">
-            <column name="potencia" length="20" not-null="true" />
+        <property name="potencia" type="int">
+            <column name="potencia" not-null="true" />
         </property>
+        <set name="loteeqeletricos" table="loteeqeletrico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codTipoEqEletrico" not-null="true" />
+            </key>
+            <one-to-many class="Hibernate.Loteeqeletrico" />
+        </set>
     </class>
 </hibernate-mapping>

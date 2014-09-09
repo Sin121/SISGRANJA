@@ -8,6 +8,8 @@ package Janelas.Fase;
 
 import Hibernate.Alerta;
 import Hibernate.Fase;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,19 +27,58 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
     }
     public void inicializa(){
         atualizatabela();
+        eventotabela();
     }
     public void atualizatabela(){
         DefaultTableModel model = fase.modelotabela(jTable1);
         jTable1.setModel(model);
-        //jTable1.setRowSelectionInterval(0, 0);//selecionar a primeira linha automaticamente se nao tiver nada selecionado
+        jTable1.setRowSelectionInterval(0, 0);//selecionar a primeira linha automaticamente se nao tiver nada selecionado
+    }
+    public void eventotabela(){
+            jTable1.addMouseListener(new MouseAdapter(){
+                @Override
+                public void mouseClicked(MouseEvent e){
+                if (e.getClickCount() == 2){
+                    editar();
+                }
+            }
+        } );
     }
     public void setfase(){
         fase.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-        fase.setTipo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 1));
+        fase.setTipo(fase.convertertipo((String) jTable1.getValueAt(jTable1.getSelectedRow(), 1)));
         fase.setNome((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2));
         fase.setDescricao((String) jTable1.getValueAt(jTable1.getSelectedRow(), 3));
         fase.setInicio((int) jTable1.getValueAt(jTable1.getSelectedRow(), 4));
         fase.setDuracao((int) jTable1.getValueAt(jTable1.getSelectedRow(), 6));
+    }
+    public void adicionar(){
+        Cadastro_Fase cadastro = new Cadastro_Fase(null, true);
+        cadastro.setVisible(true);
+        atualizatabela();
+    }
+    public void editar(){
+        if (jTable1.getSelectedRow() == -1){
+            Alerta msg = new Alerta("editar","Editar Item","editar");
+            msg.nadaselecionado();
+        }else{
+            setfase();
+            Cadastro_Fase cadastro = new Cadastro_Fase(null, true);
+            cadastro.setFase(fase);
+            cadastro.setExist(true);
+            cadastro.setVisible(true);
+            atualizatabela();
+        }
+    }
+    public void excluir(){
+        if (jTable1.getSelectedRow() == -1){
+            Alerta msg = new Alerta("exluir","Editar Item","exluir");
+            msg.nadaselecionado();
+        }else{
+            setfase();
+            fase.excluir();
+            atualizatabela();
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,14 +111,6 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Delete2.png"))); // NOI18N
@@ -150,24 +183,12 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (jTable1.getSelectedRow() == -1){
-            Alerta msg = new Alerta("editar","Editar Item","editar");
-            msg.nadaselecionado();
-        }else{
-            setfase();
-            Cadastro_Fase cadastro = new Cadastro_Fase(null, true);
-            cadastro.setFase(fase);
-            cadastro.setExist(true);
-            cadastro.setVisible(true);
-            atualizatabela();
-        }
+        editar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Cadastro_Fase cadastro = new Cadastro_Fase(null, true);
-        cadastro.setVisible(true);
-        atualizatabela();
+        adicionar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -177,14 +198,7 @@ public class Lista_Fase extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if (jTable1.getSelectedRow() == -1){
-            Alerta msg = new Alerta("exluir","Excluir Item","exluir");
-            msg.nadaselecionado();
-        }else{
-            setfase();
-            fase.excluir();
-            atualizatabela();
-        }
+        excluir();
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

@@ -6,12 +6,10 @@
 
 package Janelas;
 
-import Hibernate.Galpao;
 import Janelas.Backup.Backup;
 import Janelas.Dia.Gerencia_Dia;
 import Janelas.Enciclopedia.Cadastro_Item_Enciclopedia;
 import Janelas.Enciclopedia.Item_Enciclopedia;
-import Janelas.Fase.Cadastro_Fase;
 import Janelas.Fase.Lista_Fase;
 import Janelas.Galpao.Cadastro_Galpao;
 import Janelas.Galpao.Visualizar_Galpao;
@@ -19,10 +17,8 @@ import Janelas.Gasto.Cama.Cadastro_Lote_Cama;
 import Janelas.Gasto.Cama.Cadastro_Tipo_Cama;
 import Janelas.Gasto.Cama.Lote_Cama;
 import Janelas.Gasto.Cama.Tipo_Cama;
-import Janelas.Gasto.Equipamento_Eletrico.Cadastro_Lote_Equipamento_Eletrico;
-import Janelas.Gasto.Equipamento_Eletrico.Cadastro_Tipo_Equipamento_Eletrico;
-import Janelas.Gasto.Equipamento_Eletrico.Lote_Equipamento_Eletrico;
-import Janelas.Gasto.Equipamento_Eletrico.Tipo_Equipamento_Eletrico;
+import Janelas.Gasto.Equipamento_Eletrico.Lista_Lote_Equipamento_Eletrico;
+import Janelas.Gasto.Equipamento_Eletrico.Lista_Tipo_Equipamento_Eletrico;
 import Janelas.Gasto.Gas.Cadastro_Lote_Gas;
 import Janelas.Gasto.Gas.Cadastro_Tipo_Gas;
 import Janelas.Gasto.Gas.Lote_Gas;
@@ -68,8 +64,8 @@ public class Principal extends javax.swing.JFrame {
     private Visualizar_Galpao galpao;
     private Lote_Cama lote_cama;
     private Tipo_Cama tipo_cama;
-    private Lote_Equipamento_Eletrico lote_equipamento_eletrico;
-    private Tipo_Equipamento_Eletrico tipo_equipamento_eletrico;
+    private Lista_Lote_Equipamento_Eletrico lote_equipamento_eletrico;
+    private Lista_Tipo_Equipamento_Eletrico tipo_equipamento_eletrico;
     private Lote_Gas lote_gas;
     private Tipo_Gas tipo_gas;
     private Lote_Medicamento lote_medicamento;
@@ -96,8 +92,8 @@ public class Principal extends javax.swing.JFrame {
         galpao = new Visualizar_Galpao();
         lote_cama = new Lote_Cama();
         tipo_cama = new Tipo_Cama();
-        lote_equipamento_eletrico = new Lote_Equipamento_Eletrico();
-        tipo_equipamento_eletrico = new Tipo_Equipamento_Eletrico();
+        lote_equipamento_eletrico = new Lista_Lote_Equipamento_Eletrico();
+        tipo_equipamento_eletrico = new Lista_Tipo_Equipamento_Eletrico();
         lote_gas = new Lote_Gas();
         tipo_gas = new Tipo_Gas();
         lote_medicamento = new Lote_Medicamento();
@@ -800,8 +796,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        Cadastro_Fase cadastro = new Cadastro_Fase(null, true);
-        cadastro.setVisible(true);
+        fase.adicionar();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -948,14 +943,12 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
         // TODO add your handling code here:
-        Cadastro_Tipo_Equipamento_Eletrico cadastro = new Cadastro_Tipo_Equipamento_Eletrico(null, true);
-        cadastro.setVisible(true);
+        tipo_equipamento_eletrico.adicionar();
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
-        Cadastro_Lote_Equipamento_Eletrico cadastro = new Cadastro_Lote_Equipamento_Eletrico(null, true);
-        cadastro.setVisible(true);
+        lote_equipamento_eletrico.adicionar();
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed

@@ -6,18 +6,63 @@
 
 package Janelas.Gasto.Equipamento_Eletrico;
 
+import Hibernate.Tipoeqeletrico;
+
 /**
  *
  * @author Douglas
  */
 public class Cadastro_Tipo_Equipamento_Eletrico extends javax.swing.JDialog {
-
+    private Tipoeqeletrico tipoeqeletrico = new Tipoeqeletrico();
+    private boolean exist = false;
+    
     /**
      * Creates new form Cadastro_Tipo_Equipamento_Eletrico1
      */
     public Cadastro_Tipo_Equipamento_Eletrico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        inicializa();
+    }
+    public void salvar(){
+        settipoeqeletrico();
+        System.out.println(tipoeqeletrico);
+        if (exist){
+            tipoeqeletrico.editar();
+        }else{
+            tipoeqeletrico.cadastrar();
+        }
+    }
+    public void limpar(){
+        jTextField1.setText(null);
+        jTextField2.setText(null);
+        jSpinner1.setValue(1);
+        tipoeqeletrico.setCodigo(null);
+    }
+    public void inicializa(){
+    }
+    public void gettipoeqeletrico(){
+        jTextField1.setText(tipoeqeletrico.getNome());
+        jTextField2.setText(tipoeqeletrico.getTipo());
+        jSpinner1.setValue(tipoeqeletrico.getPotencia());
+    }
+    public void settipoeqeletrico(){
+        //tipoeqeletrico.setCodigo(null);
+        tipoeqeletrico.setNome(jTextField1.getText());
+        tipoeqeletrico.setTipo(jTextField2.getText());
+        tipoeqeletrico.setPotencia((int) jSpinner1.getValue());
+    }
+    public void settipoeqeletrico(Tipoeqeletrico atual){
+        tipoeqeletrico = atual;
+        
+        gettipoeqeletrico();
+    }
+    public boolean getExist() {
+        return exist;
+    }
+
+    public void setExist(boolean exist) {
+        this.exist = exist;
     }
 
     /**
@@ -46,9 +91,19 @@ public class Cadastro_Tipo_Equipamento_Eletrico extends javax.swing.JDialog {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
         jButton2.setText(bundle.getString("Limpar")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
         jButton1.setText(bundle.getString("Salvar")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
@@ -134,6 +189,16 @@ public class Cadastro_Tipo_Equipamento_Eletrico extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        limpar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        salvar();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

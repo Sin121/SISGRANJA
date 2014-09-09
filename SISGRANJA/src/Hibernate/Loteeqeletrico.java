@@ -1,5 +1,12 @@
 package Hibernate;
-// Generated 06/09/2014 17:29:32 by Hibernate Tools 3.6.0
+// Generated 05/09/2014 15:29:24 by Hibernate Tools 3.6.0
+
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 
 
 
@@ -10,15 +17,15 @@ public class Loteeqeletrico  implements java.io.Serializable {
 
 
      private Integer codigo;
-     private int codTipoEqEletrico;
+     private Tipoeqeletrico tipoeqeletrico;
      private float preco;
      private int quantidade;
 
     public Loteeqeletrico() {
     }
 
-    public Loteeqeletrico(int codTipoEqEletrico, float preco, int quantidade) {
-       this.codTipoEqEletrico = codTipoEqEletrico;
+    public Loteeqeletrico(Tipoeqeletrico tipoeqeletrico, float preco, int quantidade) {
+       this.tipoeqeletrico = tipoeqeletrico;
        this.preco = preco;
        this.quantidade = quantidade;
     }
@@ -30,12 +37,12 @@ public class Loteeqeletrico  implements java.io.Serializable {
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
-    public int getCodTipoEqEletrico() {
-        return this.codTipoEqEletrico;
+    public Tipoeqeletrico getTipoeqeletrico() {
+        return this.tipoeqeletrico;
     }
     
-    public void setCodTipoEqEletrico(int codTipoEqEletrico) {
-        this.codTipoEqEletrico = codTipoEqEletrico;
+    public void setTipoeqeletrico(Tipoeqeletrico tipoeqeletrico) {
+        this.tipoeqeletrico = tipoeqeletrico;
     }
     public float getPreco() {
         return this.preco;
@@ -51,8 +58,156 @@ public class Loteeqeletrico  implements java.io.Serializable {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-
-
+    public void cadastrar(){
+        boolean embranco = false;
+        String vazios="";
+        Alerta msg;
+        //ver se tem campos em branco
+        if (this.preco == 0){
+            embranco = true;
+            vazios+="O campo Preço não foi preenchido.\n";
+        }
+        if (this.quantidade == 0){
+            embranco = true;
+            vazios+="O campo Quantidade não foi preenchido.\n";
+        }
+        //ver se quer cadastrar mesmo com campos em branco
+        if (embranco == true){
+            msg = new Alerta("editar","Campos em branco",vazios);
+            int certeza = msg.embranco();//sim = 0, nao = 1, estranho...
+            if (certeza==0){
+                embranco = false;
+            }else{
+                msg = new Alerta("Cadastro","Operação cancelada",null);
+                msg.cancelada();
+                embranco = true;
+            }
+        }
+        //cadastro
+        if (!embranco){
+            try {
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+                session.save(this);
+                session.getTransaction().commit();
+                //HibernateUtil.shutdown();
+                msg = new Alerta("cadastrada","Lote de Equipamento Elétrico",this.toString());
+                msg.sucesso();
+                session.close();
+            } catch (Exception erro) {
+                msg = new Alerta("cadastro","Lote de Equipamento Elétrico",erro.getMessage());
+                msg.erro();
+                //erro.printStackTrace();
+            }
+        }
+    }
+    public void excluir(){
+        Alerta msg = new Alerta("excluir","Exclusão de Tipo de Equipamento Elétrico",this.toString());
+        int certeza = msg.certeza();//sim = 0, nao = 1, estranho...
+        if (certeza==0){
+            try {
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+                session.delete(this);
+                session.getTransaction().commit();
+                //HibernateUtil.shutdown();
+                msg = new Alerta("excluida","Tipo de Equipamento Elétrico",this.toString());
+                msg.sucesso();
+                session.close();
+            } catch (Exception erro) {
+                msg = new Alerta("exclusão","Tipo de Equipamento Elétrico",erro.getMessage());
+                msg.erro();
+                //erro.getMessage();
+            }
+        }else{
+            msg = new Alerta("Exclusão","Operação cancelada",null);
+            msg.cancelada();
+        }
+    }
+    public void editar(){
+        boolean embranco = false;
+        String vazios="";
+        Alerta msg;
+        //ver se tem campos em branco
+        if (this.preco == 0){
+            embranco = true;
+            vazios+="O campo Preço não foi preenchido.\n";
+        }
+        if (this.quantidade == 0){
+            embranco = true;
+            vazios+="O campo Quantidade não foi preenchido.\n";
+        }
+        //ver se quer editar mesmo com campos em branco
+        if (embranco){
+            msg = new Alerta("editar","Campos em branco",vazios);
+            int certeza = msg.embranco();//sim = 0, nao = 1, estranho...
+            if (certeza==0){
+                embranco = false;
+            }else{
+                msg = new Alerta("Edição","Operação cancelada",null);
+                msg.cancelada();
+                embranco = true;
+            }
+        }
+        //cadastro
+        if (!embranco){
+            try {
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+                session.update(this);
+                session.getTransaction().commit();
+                //HibernateUtil.shutdown();
+                msg = new Alerta("editada","Lote de Equipamento Elétrico",this.toString());
+                msg.sucesso();
+                session.close();
+            } catch (Exception erro) {
+                msg = new Alerta("edição","Lote de Equipamento Elétrico",erro.getMessage());
+                msg.erro();
+                //erro.getMessage();
+            }
+        }else{
+            msg = new Alerta("Edição","Operação cancelada",null);
+            msg.cancelada();
+        }
+    }
+    public DefaultTableModel modelotabela(javax.swing.JTable jTable1){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query select = session.createQuery("from Loteeqeletrico");  
+        List lista = select.list();  
+        session.getTransaction().commit();
+        session.close();
+        DefaultTableModel model = new DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "Código", "Tipo de Equipamento Elétrico", "Preço", "Quantidade"
+            }
+        ){
+            @Override
+            public boolean isCellEditable(int row, int column) {//não deixar editar as celulas
+                return false;
+            }
+        };
+        model.setRowCount(0);
+        for(Iterator it = lista.iterator();it.hasNext();){
+            Loteeqeletrico loteeqeletrico = (Loteeqeletrico) it.next();
+            model.addRow(
+                new Object[]{
+                    loteeqeletrico.getCodigo(),
+                    loteeqeletrico.getTipoeqeletrico(),
+                    loteeqeletrico.getPreco(),
+                    loteeqeletrico.getQuantidade()
+                }
+            );
+        }
+        jTable1.setAutoCreateRowSorter(true);//auto-ordenar
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);//selecionar so 1 entrada
+        return model;
+    }
+    @Override
+    public String toString() {
+        return codigo + ", " + tipoeqeletrico + ", " + preco + ", " + quantidade;
+    }
 
 
 }

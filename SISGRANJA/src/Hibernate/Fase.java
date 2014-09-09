@@ -79,17 +79,20 @@ public class Fase  implements java.io.Serializable {
     
     public void cadastrar(){
         boolean embranco = false;
+        String vazios="";
         Alerta msg;
         //ver se tem campos em branco
-        if (this.descricao.length() == 0){
-            embranco = true;
-        }
         if (this.nome.length() == 0){
             embranco = true;
+            vazios+="O campo Nome não foi preenchido.\n";
+        }
+        if (this.descricao.length() == 0){
+            embranco = true;
+            vazios+="O campo Descrição não foi preenchido.\n";
         }
         //ver se quer cadastrar mesmo com campos em branco
         if (embranco == true){
-            msg = new Alerta("cadastrar","Campos em branco",this.toString());
+            msg = new Alerta("editar","Campos em branco",vazios);
             int certeza = msg.embranco();//sim = 0, nao = 1, estranho...
             if (certeza==0){
                 embranco = false;
@@ -109,6 +112,7 @@ public class Fase  implements java.io.Serializable {
                 //HibernateUtil.shutdown();
                 msg = new Alerta("cadastrada","Fase",this.toString());
                 msg.sucesso();
+                session.close();
             } catch (Exception erro) {
                 msg = new Alerta("cadastro","Fase",erro.getMessage());
                 msg.erro();
@@ -128,6 +132,7 @@ public class Fase  implements java.io.Serializable {
                 //HibernateUtil.shutdown();
                 msg = new Alerta("excluida","Fase",this.toString());
                 msg.sucesso();
+                session.close();
             } catch (Exception erro) {
                 msg = new Alerta("exclusão","Fase",erro.getMessage());
                 msg.erro();
@@ -140,17 +145,20 @@ public class Fase  implements java.io.Serializable {
     }
     public void editar(){
         boolean embranco = false;
+        String vazios="";
         Alerta msg;
         //ver se tem campos em branco
-        if (this.descricao.length() == 0){
-            embranco = true;
-        }
         if (this.nome.length() == 0){
             embranco = true;
+            vazios+="O campo Nome não foi preenchido.\n";
+        }
+        if (this.descricao.length() == 0){
+            embranco = true;
+            vazios+="O campo Descrição não foi preenchido.\n";
         }
         //ver se quer editar mesmo com campos em branco
         if (embranco){
-            msg = new Alerta("editar","Campos em branco",this.toString());
+            msg = new Alerta("editar","Campos em branco",vazios);
             int certeza = msg.embranco();//sim = 0, nao = 1, estranho...
             if (certeza==0){
                 embranco = false;
@@ -170,6 +178,7 @@ public class Fase  implements java.io.Serializable {
                 //HibernateUtil.shutdown();
                 msg = new Alerta("editada","Fase",this.toString());
                 msg.sucesso();
+                session.close();
             } catch (Exception erro) {
                 msg = new Alerta("edição","Fase",erro.getMessage());
                 msg.erro();
@@ -186,6 +195,7 @@ public class Fase  implements java.io.Serializable {
         Query select = session.createQuery("from Fase");  
         List lista = select.list();  
         session.getTransaction().commit();
+        session.close();
         DefaultTableModel model = new DefaultTableModel(
             new Object [][] {},
             new String [] {
@@ -203,7 +213,7 @@ public class Fase  implements java.io.Serializable {
             model.addRow(
                 new Object[]{
                     fase.getCodigo(),
-                    fase.getTipo(),
+                    fase.convertertipo(fase.getTipo()),
                     fase.getNome(),
                     fase.getDescricao(),
                     fase.getInicio(),
@@ -216,11 +226,32 @@ public class Fase  implements java.io.Serializable {
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);//selecionar so 1 entrada
         return model;
     }
-
-
+    public String convertertipo(int x){
+        switch(x){
+            case 0:
+                return("Lote de Corte");
+                //break;
+            case 1:
+                return("Lote de Postura");
+                //break;
+            default:
+                return("Tipo não reconhecido");
+        }
+            
+    }
+    public int convertertipo(String x){
+        switch(x){
+            case "Lote de Corte":
+                return(0);
+            case "Lote de Postura":
+                return(1);
+            default:
+                return(-1);
+        }
+    }
     @Override
     public String toString() {
-        return codigo + ", " + tipo + ", " + nome + ", " + descricao + ", " + inicio + ", " + duracao;
+        return codigo + ", " + convertertipo(tipo) + ", " + nome + ", " + descricao + ", " + inicio + ", " + duracao;
     }
 }
 

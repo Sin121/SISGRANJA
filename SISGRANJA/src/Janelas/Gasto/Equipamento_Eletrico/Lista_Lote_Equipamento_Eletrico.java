@@ -4,19 +4,84 @@
  * and open the template in the editor.
  */
 
-package Janelas.Fase;
+package Janelas.Gasto.Equipamento_Eletrico;
+
+import Hibernate.Alerta;
+import Hibernate.Loteeqeletrico;
+import Hibernate.Tipoeqeletrico;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Douglas
  */
-public class Fase extends javax.swing.JInternalFrame {
+public class Lista_Lote_Equipamento_Eletrico extends javax.swing.JInternalFrame {
+    private Tipoeqeletrico tipoeqeletrico = new Tipoeqeletrico();
+    private Loteeqeletrico loteeqeletrico = new Loteeqeletrico();
 
     /**
-     * Creates new form Fase1
+     * Creates new form Lote_Equipamento_Eletrico1
      */
-    public Fase() {
+    public Lista_Lote_Equipamento_Eletrico() {
         initComponents();
+        inicializa();
+    }
+    public void inicializa(){
+        atualizatabela();
+        eventotabela();
+    }
+    public void atualizatabela(){
+        DefaultTableModel model = loteeqeletrico.modelotabela(jTable1);
+        jTable1.setModel(model);
+        jTable1.setRowSelectionInterval(0, 0);//selecionar a primeira linha automaticamente se nao tiver nada selecionado
+    }
+        public void eventotabela(){
+            jTable1.addMouseListener(new MouseAdapter(){
+                @Override
+                public void mouseClicked(MouseEvent e){
+                if (e.getClickCount() == 2){
+                    editar();
+                }
+            }
+        } );
+    }
+    public void setloteeqeletrico(){
+        loteeqeletrico.setCodigo((int) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        loteeqeletrico.setTipoeqeletrico((Tipoeqeletrico) jTable1.getValueAt(jTable1.getSelectedRow(), 1));
+        loteeqeletrico.setPreco((float) jTable1.getValueAt(jTable1.getSelectedRow(), 2));
+        loteeqeletrico.setQuantidade((int) jTable1.getValueAt(jTable1.getSelectedRow(), 3));
+    }
+    public void adicionar(){
+        Cadastro_Lote_Equipamento_Eletrico cadastro = new Cadastro_Lote_Equipamento_Eletrico(null, true);
+        cadastro.setVisible(true);
+        atualizatabela();
+    }
+    public void editar(){
+        if (jTable1.getSelectedRow() == -1){
+            Alerta msg = new Alerta("editar","Editar Item","editar");
+            msg.nadaselecionado();
+        }else{
+            setloteeqeletrico();
+            Cadastro_Lote_Equipamento_Eletrico cadastro = new Cadastro_Lote_Equipamento_Eletrico(null, true);
+            cadastro.setloteeqeletrico(loteeqeletrico);
+//            System.out.println(loteeqeletrico);
+//            System.out.println(loteeqeletrico.getTipoeqeletrico());
+            cadastro.setExist(true);
+            cadastro.setVisible(true);
+            atualizatabela();
+        }
+    }
+    public void excluir(){
+        if (jTable1.getSelectedRow() == -1){
+            Alerta msg = new Alerta("exluir","Editar Item","exluir");
+            msg.nadaselecionado();
+        }else{
+            setloteeqeletrico();
+            loteeqeletrico.excluir();
+            atualizatabela();
+        }
     }
 
     /**
@@ -28,19 +93,46 @@ public class Fase extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton4 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
-        setTitle(bundle.getString("Fase")); // NOI18N
+        setTitle(bundle.getString("Lote_Equipamento_Eletrico")); // NOI18N
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Delete2.png"))); // NOI18N
+        jButton3.setText(bundle.getString("Excluir")); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Edit2.png"))); // NOI18N
+        jButton2.setText(bundle.getString("Editar")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Add2.png"))); // NOI18N
+        jButton1.setText(bundle.getString("Adicionar")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText(bundle.getString("Lote_Equipamento_Eletrico")); // NOI18N
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Cancel2.png"))); // NOI18N
         jButton4.setText(bundle.getString("Fechar")); // NOI18N
@@ -62,28 +154,6 @@ public class Fase extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Delete2.png"))); // NOI18N
-        jButton3.setText(bundle.getString("Excluir")); // NOI18N
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Edit2.png"))); // NOI18N
-        jButton2.setText(bundle.getString("Editar")); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Add2.png"))); // NOI18N
-        jButton1.setText(bundle.getString("Adicionar")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText(bundle.getString("Fase")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,7 +183,7 @@ public class Fase extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -128,18 +198,23 @@ public class Fase extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        editar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Cadastro_Fase cadastro = new Cadastro_Fase(null, true);
-        cadastro.setVisible(true);
+        adicionar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        excluir();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

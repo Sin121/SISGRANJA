@@ -34,7 +34,7 @@ public class Alerta {
         return JOptionPane.showConfirmDialog(null, "Tem certeza que deseja "+this.operacao+" o item:\n"+this.msg+"\nEssa operação não poderá ser desfeita.", this.titulo, JOptionPane.YES_NO_OPTION);
     }
     public int embranco(){
-        return JOptionPane.showConfirmDialog(null, "Tem certeza que deseja "+this.operacao+" o item:\n"+this.msg+"\nEle possui alguns campos que não foram preenchidos.", this.titulo, JOptionPane.YES_NO_OPTION);
+        return JOptionPane.showConfirmDialog(null, "Atenção:\n"+this.msg+"Tem certeza que deseja "+this.operacao+" esse item mesmo assim?", this.titulo, JOptionPane.YES_NO_OPTION);
     }
     public void cancelada(){
         JOptionPane.showMessageDialog(null, this.operacao+" cancelada", this.titulo, JOptionPane.ERROR_MESSAGE);

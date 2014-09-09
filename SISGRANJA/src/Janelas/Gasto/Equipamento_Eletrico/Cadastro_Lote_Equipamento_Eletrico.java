@@ -6,11 +6,17 @@
 
 package Janelas.Gasto.Equipamento_Eletrico;
 
+import Hibernate.Loteeqeletrico;
+import Hibernate.Tipoeqeletrico;
+
 /**
  *
  * @author Douglas
  */
 public class Cadastro_Lote_Equipamento_Eletrico extends javax.swing.JDialog {
+    private Tipoeqeletrico tipoeqeletrico = new Tipoeqeletrico();
+    private Loteeqeletrico loteeqeletrico = new Loteeqeletrico();
+    private boolean exist = false;
 
     /**
      * Creates new form Cadastro_Lote_Equipamento_Eletrico1
@@ -18,6 +24,54 @@ public class Cadastro_Lote_Equipamento_Eletrico extends javax.swing.JDialog {
     public Cadastro_Lote_Equipamento_Eletrico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        inicializa();
+    }
+    public void salvar(){
+        setloteeqeletrico();
+        System.out.println(loteeqeletrico);
+        if (exist){
+            loteeqeletrico.editar();
+        }else{
+            loteeqeletrico.cadastrar();
+        }
+    }
+    public void limpar(){
+        jComboBox1.setSelectedIndex(0);
+        jSpinner1.setValue(0);
+        jSpinner2.setValue(1);
+        loteeqeletrico.setCodigo(null);
+    }
+    public void getloteeqeletrico(){
+        tipoeqeletrico = loteeqeletrico.getTipoeqeletrico();
+        //System.out.println(tipoeqeletrico);
+        jComboBox1.setSelectedIndex(tipoeqeletrico.indexdacombobox());
+        //jComboBox1.setSelectedItem(tipoeqeletrico);
+        jSpinner1.setValue(loteeqeletrico.getPreco());
+        jSpinner2.setValue((int) loteeqeletrico.getQuantidade());
+    }
+    public void setloteeqeletrico(){
+        //loteeqeletrico.setCodigo(null);
+        loteeqeletrico.setTipoeqeletrico((Tipoeqeletrico) jComboBox1.getSelectedItem());
+        loteeqeletrico.setPreco((float) jSpinner1.getValue());
+        loteeqeletrico.setQuantidade((int) jSpinner2.getValue());
+    }
+    public void setloteeqeletrico(Loteeqeletrico atual){
+        loteeqeletrico = atual;
+        
+        getloteeqeletrico();
+    }
+    public boolean getExist() {
+        return exist;
+    }
+
+    public void setExist(boolean exist) {
+        this.exist = exist;
+    }
+    public void inicializa(){
+        atualiza();
+    }
+    public void atualiza(){
+        jComboBox1.setModel(tipoeqeletrico.modelocombobox());
     }
 
     /**
@@ -30,7 +84,6 @@ public class Cadastro_Lote_Equipamento_Eletrico extends javax.swing.JDialog {
     private void initComponents() {
 
         jSpinner1 = new javax.swing.JSpinner();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,14 +92,13 @@ public class Cadastro_Lote_Equipamento_Eletrico extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jSpinner2 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Janelas/Strings"); // NOI18N
         setTitle(bundle.getString("Cadastro_Lote_Equipamento_Eletrico")); // NOI18N
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
-
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(1.0f), Float.valueOf(0.0f), null, Float.valueOf(0.01f)));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -69,9 +121,21 @@ public class Cadastro_Lote_Equipamento_Eletrico extends javax.swing.JDialog {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Erase2.png"))); // NOI18N
         jButton2.setText(bundle.getString("Limpar")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Ok2.png"))); // NOI18N
         jButton1.setText(bundle.getString("Salvar")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,11 +157,11 @@ public class Cadastro_Lote_Equipamento_Eletrico extends javax.swing.JDialog {
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSpinner1)
-                            .addComponent(jFormattedTextField1)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSpinner2, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -112,11 +176,11 @@ public class Cadastro_Lote_Equipamento_Eletrico extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -132,6 +196,16 @@ public class Cadastro_Lote_Equipamento_Eletrico extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        limpar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        salvar();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,11 +254,11 @@ public class Cadastro_Lote_Equipamento_Eletrico extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     // End of variables declaration//GEN-END:variables
 }
